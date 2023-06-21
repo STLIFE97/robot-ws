@@ -32,6 +32,7 @@ U盘中预装有基于Ubuntu的深度定制的Ubuntu18.04+ ROS Melodic，内置�
   1.计算机支持UEFI
 ```
 - 3. 接收天线
+     
      ![image](https://github.com/RichardMJT/robot-ws/assets/51042944/11634332-9b4a-4c3f-af30-8ee6968e558c)
 
 ```
