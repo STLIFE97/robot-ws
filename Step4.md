@@ -647,7 +647,7 @@ scan: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, cl
 4.2.2 global_costmap_params.yaml
 
 该文件用于全局代价地图参数设置:
-
+```
 global_costmap:
   global_frame: map #地图坐标系
   robot_base_frame: base_footprint #机器人坐标系
@@ -658,11 +658,11 @@ global_costmap:
   transform_tolerance: 0.5 #等待坐标变换发布信息的超时时间
 
   static_map: true # 是否使用一个地图或者地图服务器来初始化全局代价地图，如果不使用静态地图，这个参数为false.
-
+```
 4.2.3 local_costmap_params.yaml
 
 该文件用于局部代价地图参数设置:
-
+```
 local_costmap:
   global_frame: odom #里程计坐标系
   robot_base_frame: base_footprint #机器人坐标系
@@ -676,7 +676,7 @@ local_costmap:
   width: 3 # 局部地图宽度 单位是 m
   height: 3 # 局部地图高度 单位是 m
   resolution: 0.05 # 局部地图分辨率 单位是 m，一般与静态地图分辨率保持一致
-
+```
 4.2.4 base_local_planner_params
 
 基本的局部规划器参数配置，这个配置文件设定了机器人的最大和最小速度限制值，也设定了加速度的阈值。
