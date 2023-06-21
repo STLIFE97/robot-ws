@@ -10,7 +10,7 @@ TODO
 TODO
 ```
 - 3. gmapping使用
--3.1编写gmapping节点相关launch文件
+- 3.1编写gmapping节点相关launch文件
 launch文件编写可以参考 github 的演示 launch文件：https://github.com/ros-perception/slam_gmapping/blob/melodic-devel/gmapping/launch/slam_gmapping_pr2.launch
 复制并修改如下:
 ```
@@ -66,7 +66,7 @@ launch文件编写可以参考 github 的演示 launch文件：https://github.co
 <param name="base_frame" value="base_footprint"/><!--底盘坐标系-->
 <param name="odom_frame" value="odom"/> <!--里程计坐标系-->
 ```
--3.2执行
+- 3.2执行
 1.先启动 Gazebo 仿真环境
 2.然后再启动地图绘制的 launch 文件:
 ```
