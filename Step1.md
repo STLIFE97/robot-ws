@@ -2,9 +2,8 @@
 
 ## 1. 小车组件介绍
 - 1. 小车主体
-```
-TODO
-```
+
+![image](https://github.com/RichardMJT/robot-ws/assets/51042944/bc64fe06-7ccb-4ce8-ab6d-ab2530c6cb7e)
 
 - 2.  ROS2GO U 盘系统
 ```
