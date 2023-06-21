@@ -67,16 +67,16 @@ launch文件编写可以参考 github 的演示 launch文件：https://github.co
 <param name="odom_frame" value="odom"/> <!--里程计坐标系-->
 ```
 - 3.2执行
-1.先启动 Gazebo 仿真环境
-2.然后再启动地图绘制的 launch 文件:
+- 1.先启动 Gazebo 仿真环境
+- 2.然后再启动地图绘制的 launch 文件:
 ```
 roslaunch 包名 launch文件名
 ```
-3.启动键盘键盘控制节点，用于控制机器人运动建图
+- 3.启动键盘键盘控制节点，用于控制机器人运动建图
 ```
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
-4.在 rviz 中添加组件，显示栅格地图
+- 4.在 rviz 中添加组件，显示栅格地图
 最后，就可以通过键盘控制gazebo中的机器人运动，同时，在rviz中可以显示gmapping发布的栅格地图数据了，下一步，还需要将地图单独保存。
 
 ## 2. 地图服务
