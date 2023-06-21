@@ -22,6 +22,7 @@ gmapping 功能包中的核心节点是:slam_gmapping。为了方便调用，需
 - 2.1订阅的Topic
   
 tf (tf/tfMessage)
+
     用于雷达、底盘与里程计之间的坐标变换消息。
   
 scan(sensor_msgs/LaserScan)
@@ -49,7 +50,7 @@ dynamic_map(nav_msgs/GetMap)
     用于获取地图数据。
     
 - 2.4参数
-- 
+
 ~base_frame(string, default:"base_link")
 
     机器人基坐标系。
