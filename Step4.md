@@ -290,19 +290,98 @@ static_map（nav_msgs / GetMap）
 
 
 ## 3. 定位
-- 1. sth
+
+所谓定位就是推算机器人自身在全局地图中的位置，当然，SLAM中也包含定位算法实现，不过SLAM的定位是用于构建全局地图的，是属于导航开始之前的阶段，而当前定位是用于导航中，导航中，机器人需要按照设定的路线运动，通过定位可以判断机器人的实际轨迹是否符合预期。在ROS的导航功能包集navigation中提供了 amcl 功能包，用于实现导航中的机器人定位。
+
+- 1.amcl简介
+
+AMCL(adaptive Monte Carlo Localization) 是用于2D移动机器人的概率定位系统，它实现了自适应（或KLD采样）蒙特卡洛定位方法，可以根据已有地图使用粒子滤波器推算机器人位置。
+amcl已经被集成到了navigation包，navigation安装前面也有介绍，命令如下:
 ```
-TODO
+sudo apt install ros-<ROS版本>-navigation
 ```
 
-- 2. sth
-```
-TODO
-```
+- 2. amcl节点说明
+ 
+amcl 功能包中的核心节点是:amcl。为了方便调用，需要先了解该节点订阅的话题、发布的话题、服务以及相关参数。
 
-- 3. sth
-```
-TODO
-```
+3.1订阅的Topic
+
+scan(sensor_msgs/LaserScan)
+
+    激光雷达数据。
+
+tf(tf/tfMessage)
+
+    坐标变换消息。
+
+initialpose(geometry_msgs/PoseWithCovarianceStamped)
+
+    用来初始化粒子滤波器的均值和协方差。
+
+map(nav_msgs/OccupancyGrid)
+
+    获取地图数据。
+
+3.2发布的Topic
+
+amcl_pose(geometry_msgs/PoseWithCovarianceStamped)
+
+    机器人在地图中的位姿估计。
+
+particlecloud(geometry_msgs/PoseArray)
+
+    位姿估计集合，rviz中可以被 PoseArray 订阅然后图形化显示机器人的位姿估计集合。
+
+tf(tf/tfMessage)
+
+    发布从 odom 到 map 的转换。
+
+3.3服务
+
+global_localization(std_srvs/Empty)
+
+    初始化全局定位的服务。
+
+request_nomotion_update(std_srvs/Empty)
+
+    手动执行更新和发布更新的粒子的服务。
+
+set_map(nav_msgs/SetMap)
+
+    手动设置新地图和姿态的服务。
+
+3.4调用的服务
+
+static_map(nav_msgs/GetMap)
+
+    调用此服务获取地图数据。
+
+3.5参数
+
+~odom_model_type(string, default:"diff")
+
+    里程计模型选择: "diff","omni","diff-corrected","omni-corrected" (diff 差速、omni 全向轮)
+
+~odom_frame_id(string, default:"odom")
+
+    里程计坐标系。
+
+~base_frame_id(string, default:"base_link")
+
+    机器人极坐标系。
+
+~global_frame_id(string, default:"map")
+
+    地图坐标系。
+
+参数较多，上述是几个较为常用的参数，其他参数介绍可参考官网。
+3.6坐标变换
+
+里程计本身也是可以协助机器人定位的，不过里程计存在累计误差且一些特殊情况时(车轮打滑)会出现定位错误的情况，amcl 则可以通过估算机器人在地图坐标系下的姿态，再结合里程计提高定位准确度。
+
+    里程计定位:只是通过里程计数据实现 /odom_frame 与 /base_frame 之间的坐标变换。
+    amcl定位: 可以提供 /map_frame 、/odom_frame 与 /base_frame 之间的坐标变换。
+
 ## 4. 路径规划！！！核心步骤
 ## 5. 导航与SLAM建图-最后
