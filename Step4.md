@@ -168,6 +168,49 @@ rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 最后，就可以通过键盘控制gazebo中的机器人运动，同时，在rviz中可以显示gmapping发布的栅格地图数据了，下一步，还需要将地图单独保存。
 
 ## 2. 地图服务
+
+上一节我们已经实现通过gmapping的构建地图并在rviz中显示了地图，不过，上一节中地图数据是保存在内存中的，当节点关闭时，数据也会被一并释放，我们需要将栅格地图序列化到的磁盘以持久化存储，后期还要通过反序列化读取磁盘的地图数据再执行后续操作。在ROS中，地图数据的序列化与反序列化可以通过 map_server 功能包实现。
+
+1.map_server简介
+
+map_server功能包中提供了两个节点: map_saver 和 map_server，前者用于将栅格地图保存到磁盘，后者读取磁盘的栅格地图并以服务的方式提供出去。
+
+map_server安装前面也有介绍，命令如下:
+
+    sudo apt install ros-<ROS版本>-map-server
+
+2.map_server使用之地图保存节点(map_saver)
+2.1map_saver节点说明
+
+订阅的topic:
+
+map(nav_msgs/OccupancyGrid)
+
+    订阅此话题用于生成地图文件。
+
+2.2地图保存launch文件
+
+地图保存的语法比较简单，编写一个launch文件，内容如下:
+
+<launch>
+    <arg name="filename" value="$(find mycar_nav)/map/nav" />
+    <node name="map_save" pkg="map_server" type="map_saver" args="-f $(arg filename)" />
+</launch>
+
+其中 mymap 是指地图的保存路径以及保存的文件名称。
+
+SLAM建图完毕后，执行该launch文件即可。
+
+测试:
+
+    首先，参考上一节，依次启动仿真环境，键盘控制节点与SLAM节点；
+
+    然后，通过键盘控制机器人运动并绘图；
+
+    最后，通过上述地图保存方式保存地图。
+
+    结果：在指定路径下会生成两个文件，xxx.pgm 与 xxx.yaml
+
 ## 3. 定位
 - 1. sth
 ```
