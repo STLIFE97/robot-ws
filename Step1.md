@@ -9,7 +9,10 @@
 
 
   ![image](https://github.com/RichardMJT/robot-ws/assets/51042944/033f1909-62ac-4f48-b3df-8b9e70d939f8)
-
+  
+```
+内置完整ROS开发环境，无需配置，可直接插入电脑使用。
+```
 
 - 3. 接受天线
 ```
