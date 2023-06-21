@@ -77,6 +77,8 @@ roslaunch 包名 launch文件名
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py
 ```
 - 4.在 rviz 中添加组件，显示栅格地图
+![图片](https://github.com/fqy2333/robot-ws/assets/57582782/59070045-4dfc-4ec7-accb-6ec32fcab2b4)
+
 最后，就可以通过键盘控制gazebo中的机器人运动，同时，在rviz中可以显示gmapping发布的栅格地图数据了，下一步，还需要将地图单独保存。
 
 ## 2. 地图服务
