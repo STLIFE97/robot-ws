@@ -614,7 +614,8 @@ launch文件解释:
 在功能包下新建 param 目录，复制下载的文件到此目录: costmap_common_params_burger.yaml、local_costmap_params.yaml、global_costmap_params.yaml、base_local_planner_params.yaml，并将costmap_common_params_burger.yaml 重命名为:costmap_common_params.yaml。
 
 配置文件修改以及解释:
-4.2.1costmap_common_params.yaml
+
+4.2.1 costmap_common_params.yaml
 
 该文件是move_base 在全局路径规划与本地路径规划时调用的通用参数，包括:机器人的尺寸、距离障碍物的安全距离、传感器信息等。配置参考如下:
 ```
