@@ -617,7 +617,7 @@ launch文件解释:
 4.2.1costmap_common_params.yaml
 
 该文件是move_base 在全局路径规划与本地路径规划时调用的通用参数，包括:机器人的尺寸、距离障碍物的安全距离、传感器信息等。配置参考如下:
-
+```
 #机器人几何参，如果机器人是圆形，设置 robot_radius,如果是其他形状设置 footprint
 robot_radius: 0.12 #圆形
 # footprint: [[-0.12, -0.12], [-0.12, 0.12], [0.12, 0.12], [0.12, -0.12]] #其他形状
@@ -637,8 +637,8 @@ map_type: costmap
 observation_sources: scan
 #对传感器的坐标系和数据进行配置。这个也会用于代价地图添加和清除障碍物。例如，你可以用激光雷达传感器用于在代价地图添加障碍物，再添加kinect用于导航和清除障碍物。
 scan: {sensor_frame: laser, data_type: LaserScan, topic: scan, marking: true, clearing: true}
-
-4.2.2global_costmap_params.yaml
+```
+4.2.2 global_costmap_params.yaml
 
 该文件用于全局代价地图参数设置:
 
@@ -653,7 +653,7 @@ global_costmap:
 
   static_map: true # 是否使用一个地图或者地图服务器来初始化全局代价地图，如果不使用静态地图，这个参数为false.
 
-4.2.3local_costmap_params.yaml
+4.2.3 local_costmap_params.yaml
 
 该文件用于局部代价地图参数设置:
 
@@ -671,12 +671,12 @@ local_costmap:
   height: 3 # 局部地图高度 单位是 m
   resolution: 0.05 # 局部地图分辨率 单位是 m，一般与静态地图分辨率保持一致
 
-4.2.4base_local_planner_params
+4.2.4 base_local_planner_params
 
 基本的局部规划器参数配置，这个配置文件设定了机器人的最大和最小速度限制值，也设定了加速度的阈值。
 
+```
 TrajectoryPlannerROS:
-
 # Robot Configuration Parameters
   max_vel_x: 0.5 # X 方向最大速度
   min_vel_x: 0.1 # X 方向最小速速
@@ -702,8 +702,9 @@ TrajectoryPlannerROS:
   vx_samples: 18
   vtheta_samples: 20
   sim_granularity: 0.05
+```
 
-4.2.5参数配置技巧
+4.2.5 参数配置技巧
 
 以上配置在实操中，可能会出现机器人在本地路径规划时与全局路径规划不符而进入膨胀区域出现假死的情况，如何尽量避免这种情形呢？
 
@@ -714,7 +715,7 @@ TrajectoryPlannerROS:
 
     这样，在全局路径规划时，规划的路径会尽量远离障碍物，而本地路径规划时，机器人即便偏离全局路径也会和障碍物之间保留更大的自由空间，从而避免了陷入“假死”的情形。
 
-4.3launch文件集成
+4.3 launch文件集成
 
 如果要实现导航，需要集成地图服务、amcl 、move_base 与 Rviz 等，集成示例如下:
 
@@ -733,7 +734,7 @@ TrajectoryPlannerROS:
 
 </launch>
 
-4.4测试
+4.4 测试
 
 1.先启动 Gazebo 仿真环境(此过程略)；
 
