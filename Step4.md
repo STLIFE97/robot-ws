@@ -484,6 +484,7 @@ move_base已经被集成到了navigation包，navigation安装前面也有介绍
 2.move_base节点说明
 
 move_base功能包中的核心节点是:move_base。为了方便调用，需要先了解该节点action、订阅的话题、发布的话题、服务以及相关参数。
+
 2.1动作
 
 动作订阅
@@ -548,6 +549,7 @@ cmd_vel(geometry_msgs/Twist)
     在靠近障碍物边缘时，虽然此处是空闲区域，但是机器人在进入该区域后可能由于其他一些因素，比如：惯性、或者不规则形体的机器人转弯时可能会与障碍物产生碰撞，安全起见，最好在地图的障碍物边缘设置警戒区，尽量禁止机器人进入...
 
 所以，静态地图无法直接应用于导航，其基础之上需要添加一些辅助信息的地图，比如时时获取的障碍物数据，基于静态地图添加的膨胀区等数据。
+
 3.2组成
 
 代价地图有两张:global_costmap(全局代价地图) 和 local_costmap(本地代价地图)，前者用于全局路径规划，后者用于本地路径规划。
@@ -564,6 +566,7 @@ cmd_vel(geometry_msgs/Twist)
 
 多个layer可以按需自由搭配。
 ![图片](https://github.com/fqy2333/robot-ws/assets/57582782/3517afd7-3ab0-4cc2-a7d9-9b5d98d9f6f6)
+
 3.3碰撞算法
 
 在ROS中，如何计算代价值呢？请看下图:
@@ -579,6 +582,7 @@ cmd_vel(geometry_msgs/Twist)
     未知区域:栅格值为255，还没探明是否有障碍物。
 
 膨胀空间的设置可以参考非自由空间。
+
 4.move_base使用
 
 路径规划算法在move_base功能包的move_base节点中已经封装完毕了，但是还不可以直接调用，因为算法虽然已经封装了，但是该功能包面向的是各种类型支持ROS的机器人，不同类型机器人可能大小尺寸不同，传感器不同，速度不同，应用场景不同....最后可能会导致不同的路径规划结果，那么在调用路径规划节点之前，我们还需要配置机器人参数。具体实现如下:
@@ -607,6 +611,7 @@ cmd_vel(geometry_msgs/Twist)
 launch文件解释:
 
 启动了 move_base 功能包下的 move_base 节点，respawn 为 false，意味着该节点关闭后，不会被重启；clear_params 为 true，意味着每次启动该节点都要清空私有参数然后重新载入；通过 rosparam 会载入若干 yaml 文件用于配置参数，这些yaml文件的配置以及作用详见下一小节内容。
+
 4.2配置文件
 
 关于配置文件的编写，可以参考一些成熟的机器人的路径规划实现，比如: turtlebot3，github链接：https://github.com/ROBOTIS-GIT/turtlebot3/tree/master/turtlebot3_navigation/param，先下载这些配置文件备用。
