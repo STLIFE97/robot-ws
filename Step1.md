@@ -60,10 +60,9 @@ TODO picture
 2. 热点模式持续30秒，迷你机器人会创建TBMINI-XXXX热点，该热点未加密，使用电脑连接该热点，系统状态指示灯变为绿色。
 ```
 连接小车成功后界面：
-```
+
 ![image](https://github.com/RichardMJT/robot-ws/assets/51042944/7fb86e13-61f9-4208-bfd0-40de7162aa14)
 
-```
 
 - 3. 初始化测试
 
