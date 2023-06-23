@@ -49,9 +49,8 @@ U盘中预装有基于Ubuntu的深度定制的Ubuntu18.04+ ROS Melodic，内置�
 3. 之后选择保存并重启，进入系统
 ```
 进入 ROS2GO 系统后界面
-```
-TODO picture
-```
+![微信图片_20230623093009](https://github.com/RichardMJT/robot-ws/assets/51042944/bbd00e57-fe55-46c7-9684-19e908ed5ba1)
+
 - 2. 小车链接
 
 进入系统后将小车与电脑进行连接，具体步骤如下：
